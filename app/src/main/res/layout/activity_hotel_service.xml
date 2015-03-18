@@ -1,0 +1,26 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context="com.longjingtech.ljhotelandroidapp.HotelServiceActivity">
+
+    <EditText
+        android:id="@+id/traffic_check_edittext"
+        android:hint="@string/traffic_check_hint_textview"
+        android:layout_marginTop="200dp"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:maxLength="15"
+        android:drawableLeft="@drawable/search"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/traffic_check_button"
+        android:gravity="center"
+        android:layout_gravity="center"
+        android:text="@string/traffic_check_start"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+
+</LinearLayout>

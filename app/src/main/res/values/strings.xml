@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">智慧家庭教育</string>
+    <string name="action_settings">设置</string>
+    <string name="title_activity_native_video_player">本地播放器</string>
+    <string name="title_activity_vodmedia_player">视频播放器</string>
+    <string name="title_activity_video_menu">视频菜单</string>
+    <string name="title_network_status_receiver">网络接收器</string>
+    <string name="title_usb_receiver">USB接收器</string>
+    <string name="vod_exit_title">提示</string>
+    <string name="vod_exit_msg">您确定要退出播放吗?</string>
+    <string name="vod_exit_ok">是</string>
+    <string name="vod_exit_no">否</string>
+    <string name="title_activity_main">主活动</string>
+    <string name="title_activity_mainmenu">首页活动</string>
+    <string name="videomenu_movie">电影</string>
+    <string name="videomenu_tv">电视</string>
+    <string name="videomenu_variety">综艺</string>
+    <string name="mainmenu_tv">电视直播</string>
+    <string name="mainmenu_vod">影视点播</string>
+    <string name="mainmenu_local_play">本地播放</string>
+    <string name="mainmenu_hotel_service">酒店服务</string>
+    <string name="mainmenu_sys_config">系统设置</string>
+    <string name="mainmenu_weather_today">今日天气:</string>
+    <string name="welcome_weather_none">天气服务不可用</string>
+    <string name="title_activity_local_player">本地播放</string>
+    <string name="title_local_player_file_list">文件列表</string>
+    <string name="title_local_player_device">本地设备</string>
+
+    <string name="title_activity_education">EducationActivity</string>
+    <string name="title_activity_hotel_service">HotelServiceActivity</string>
+
+    <string name="traffic_check_hint_textview">请输入卡号中的数字部分</string>
+    <string name="traffic_check_start">开始查询</string>
+
+
+</resources>

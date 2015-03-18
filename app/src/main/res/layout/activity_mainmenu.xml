@@ -1,0 +1,129 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="horizontal"
+    tools:context="com.longjingtech.ljhotelandroidapp.MainActivity">
+
+    <ListView
+        android:id="@+id/mainmenu_listview"
+        android:layout_marginTop="50dp"
+        android:layout_marginLeft="@dimen/ljhotel_margin_in_dp"
+        android:listSelector="@drawable/main_icon_focus"
+        android:layout_weight="1"
+        android:layout_gravity="center_vertical|right"
+        android:divider="#000000"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+    </ListView>
+
+    <ImageView
+        android:id="@+id/mainmenu_imageview"
+        android:layout_weight="7"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginLeft="@dimen/ljhotel_margin_in_dp"
+        android:src="@drawable/main_background"/>
+
+    <LinearLayout
+        android:id="@+id/mainmenu_line_datetime"
+        android:orientation="vertical"
+        android:layout_weight="2"
+        android:layout_width="0dp"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/mainmenu_textView_date"
+            android:layout_weight="1"
+            android:textSize="25sp"
+            android:textStyle="bold"
+            android:layout_gravity="center"
+            android:gravity="center_horizontal|bottom"
+            android:singleLine="true"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <AnalogClock
+            android:id="@+id/mainmenu_digitalClock"
+            android:layout_weight="3"
+            android:layout_gravity="center"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <LinearLayout
+            android:id="@+id/mainmenu_weather"
+            android:orientation="horizontal"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <TextView
+                android:id="@+id/mainmenu_weather_textview_today"
+                android:singleLine="true"
+                android:textSize="20sp"
+                android:layout_gravity="center|center_vertical"
+                android:gravity="center|center_vertical"
+                android:layout_weight="2"
+                android:textStyle="bold"
+                android:layout_width="0dp"
+                android:layout_height="match_parent" />
+
+            <TextView
+                android:id="@+id/mainmenu_weather_textview"
+                android:layout_weight="3"
+                android:textSize="20sp"
+                android:layout_gravity="center|center_vertical"
+                android:singleLine="true"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content" />
+
+        </LinearLayout>
+
+        <TextView
+            android:id="@+id/mainmenu_weather_textview_degree"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            android:gravity="top|center_horizontal"
+            android:singleLine="true"
+            android:layout_weight="1"
+            android:layout_width="match_parent"
+            android:layout_height="0dp" />
+
+        <LinearLayout
+            android:orientation="horizontal"
+            android:layout_weight="3"
+            android:layout_marginBottom="@dimen/ljhotel_margin_in_dp"
+            android:layout_width="match_parent"
+            android:layout_height="0dp">
+
+            <com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews
+                android:id="@+id/mainmenu_link_ethernet"
+                android:layout_weight="1"
+                android:layout_gravity="bottom"
+                android:gravity="bottom|center_horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+            </com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews>
+
+            <com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews
+                android:id="@+id/mainmenu_link_wifi"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="bottom|center_horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+            </com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews>
+
+            <com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews
+                android:id="@+id/mainmenu_link_usb"
+                android:layout_weight="1"
+                android:layout_gravity="center"
+                android:gravity="bottom|center_horizontal"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+            </com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews>
+        </LinearLayout>
+
+    </LinearLayout>
+
+</LinearLayout>

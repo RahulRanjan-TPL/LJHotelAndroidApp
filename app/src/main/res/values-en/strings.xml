@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="app_name">Smart Edu</string>
+    <string name="action_settings">settings</string>
+    <string name="title_activity_native_video_player">native_video_player</string>
+    <string name="title_activity_vodmedia_player">vod_media_player</string>
+    <string name="title_activity_video_menu">VideoMenu</string>
+    <string name="title_network_status_receiver">NetworkStatusReceiver</string>
+    <string name="title_usb_receiver">USBReceiver</string>
+
+    <string name="vod_exit_title">Info</string>
+    <string name="vod_exit_msg">Are you sure to exit?</string>
+    <string name="vod_exit_ok">Yes</string>
+    <string name="vod_exit_no">No</string>
+    <string name="title_activity_main">MainActivity</string>
+    <string name="title_activity_mainmenu">MainmenuActivity</string>
+    <string name="title_activity_vodcategory">VODCategoryActivity</string>
+
+    <string name="videomenu_movie">Movie</string>
+    <string name="videomenu_tv">TV</string>
+    <string name="videomenu_variety">Variety</string>
+
+    <string name="mainmenu_tv">TV</string>
+    <string name="mainmenu_vod">VOD</string>
+    <string name="mainmenu_local_play">Player</string>
+    <string name="mainmenu_hotel_service">Service</string>
+    <string name="mainmenu_sys_config">Config</string>
+    <string name="mainmenu_weather_today">Today</string>
+
+    <string name="welcome_weather_none">No weather info</string>
+
+    <string name="title_local_player_file_list">File List</string>
+    <string name="title_local_player_device">Local Device</string>
+
+</resources>
