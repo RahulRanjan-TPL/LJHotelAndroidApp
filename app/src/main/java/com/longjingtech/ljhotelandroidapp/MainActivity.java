@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -230,6 +231,8 @@ public class MainActivity extends ActionBarActivity {
         new Thread(new Runnable() {
             @Override
             public void run() {
+
+                Looper.prepare();
                 String cityUrl ="http://www.weather.com.cn/data/cityinfo/" + CITYCODE + ".html";
                 //String cityUrl ="http://m.weather.com.cn/atad/" + CITYCODE + ".html";
 
@@ -248,6 +251,7 @@ public class MainActivity extends ActionBarActivity {
                         e.printStackTrace();
                     }
                 }
+                Looper.loop();
             }
         }).start();
     }
@@ -283,6 +287,7 @@ public class MainActivity extends ActionBarActivity {
             @Override
             public void run() {
 
+                Looper.prepare();
                 String cityUrl = "http://api.36wu.com/Weather/GetWeather?district=" + CITYNAME;
 
                 WeatherInfo weatherInfo = new WeatherInfo();
@@ -307,6 +312,7 @@ public class MainActivity extends ActionBarActivity {
                         e.printStackTrace();
                     }
                 }
+                Looper.loop();
             }
         }).start();
     }

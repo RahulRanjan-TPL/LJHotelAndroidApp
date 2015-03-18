@@ -11,6 +11,7 @@ import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
 import android.os.Bundle;
 import android.os.Handler;
+import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -167,6 +168,7 @@ public class MainmenuActivity extends ActionBarActivity {
             public void run() {
                 String language;
 
+                Looper.prepare();
                 language = getLocalLanguage();
 
                 HttpClient httpClient = new DefaultHttpClient();
@@ -188,6 +190,8 @@ public class MainmenuActivity extends ActionBarActivity {
                 }catch (Exception e) {
                     e.printStackTrace();
                 }
+                Looper.loop();
+
             }
         }).start();
 
