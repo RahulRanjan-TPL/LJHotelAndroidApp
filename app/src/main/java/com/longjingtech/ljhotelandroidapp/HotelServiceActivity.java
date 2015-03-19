@@ -1,5 +1,6 @@
 package com.longjingtech.ljhotelandroidapp;
 
+import android.app.AlertDialog;
 import android.content.DialogInterface;
 import android.os.Looper;
 import android.support.v7.app.ActionBarActivity;
@@ -12,25 +13,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import com.longjingtech.ljhotelandroidapp.sys.NetworkUtils;
-import com.longjingtech.ljhotelandroidapp.vod.CustomAlertDialog;
-
 import org.apache.http.HttpResponse;
-import org.apache.http.NameValuePair;
 import org.apache.http.client.HttpClient;
-import org.apache.http.client.entity.UrlEncodedFormEntity;
 import org.apache.http.client.methods.HttpPost;
 import org.apache.http.impl.client.DefaultHttpClient;
-import org.apache.http.message.BasicNameValuePair;
-import org.apache.http.params.CoreConnectionPNames;
-import org.apache.http.protocol.HTTP;
 import org.apache.http.util.EntityUtils;
 
 import java.io.IOException;
-import java.net.MalformedURLException;
-import java.net.URL;
-import java.util.ArrayList;
-import java.util.List;
 
 
 public class HotelServiceActivity extends ActionBarActivity {
@@ -81,14 +70,15 @@ public class HotelServiceActivity extends ActionBarActivity {
                                     * */
                                     resultBalance = htmlResponse.substring(6,htmlResponse.length() - 3);
 
-                                    CustomAlertDialog.Builder builder = new CustomAlertDialog.Builder(HotelServiceActivity.this);
-                                    builder.setMessage("卡号" + userCardNum + "的余额为 " + resultBalance)
-                                            .setPositiveButton(R.string.vod_exit_ok, new DialogInterface.OnClickListener() {
-                                                @Override
-                                                public void onClick(DialogInterface dialog, int which) {
-                                                    dialog.dismiss();
-                                                }
-                                            }).create().show();
+                                    AlertDialog.Builder builder = new AlertDialog.Builder(HotelServiceActivity.this);
+                                    builder.setTitle("查询结果")
+                                           .setMessage("卡号  " + userCardNum + "  的余额为  " + resultBalance + "  元")
+                                           .setPositiveButton(R.string.traffic_check_yes, new DialogInterface.OnClickListener() {
+                                               @Override
+                                               public void onClick(DialogInterface dialog, int which) {
+                                                   dialog.dismiss();
+                                               }
+                                           }).create().show();
 
                                 }
 

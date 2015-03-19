@@ -28,11 +28,10 @@
     <string name="title_local_player_file_list">文件列表</string>
     <string name="title_local_player_device">本地设备</string>
 
-    <string name="title_activity_education">EducationActivity</string>
-    <string name="title_activity_hotel_service">HotelServiceActivity</string>
+    <string name="title_activity_education">教育活动</string>
+    <string name="title_activity_hotel_service">酒店服务活动</string>
 
     <string name="traffic_check_hint_textview">请输入卡号中的数字部分</string>
     <string name="traffic_check_start">开始查询</string>
-
 
 </resources>
