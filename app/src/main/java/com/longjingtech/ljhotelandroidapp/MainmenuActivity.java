@@ -137,9 +137,7 @@ public class MainmenuActivity extends ActionBarActivity {
                         break;
 
                     case 2:
-                        Intent intent1 = new Intent();
-                        intent1.setClass(MainmenuActivity.this,LocalPlayerActivity.class);
-                        startActivity(intent1);
+                        startActivity(new Intent(MainmenuActivity.this,LocalPlayerActivity.class));
                         break;
 
                     case 3:
@@ -175,7 +173,7 @@ public class MainmenuActivity extends ActionBarActivity {
                 httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);
                 httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
 
-                HttpPost httpPost = new HttpPost("http://192.168.1.180:8888/hotel/post_movietype.php?language=" + language);
+                HttpPost httpPost = new HttpPost("http://192.168.1.240:8888/hotel/post_movietype.php?language=" + language);
 
                 try {
                     HttpResponse httpResponse = httpClient.execute(httpPost);

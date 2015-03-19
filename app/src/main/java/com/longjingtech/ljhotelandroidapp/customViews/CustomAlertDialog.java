@@ -1,4 +1,4 @@
-package com.longjingtech.ljhotelandroidapp.vod;
+package com.longjingtech.ljhotelandroidapp.customViews;
 
 import android.app.Dialog;
 import android.content.Context;

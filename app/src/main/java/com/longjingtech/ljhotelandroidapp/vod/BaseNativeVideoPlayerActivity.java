@@ -18,6 +18,7 @@ import android.widget.FrameLayout;
 import android.widget.Toast;
 
 import com.longjingtech.ljhotelandroidapp.R;
+import com.longjingtech.ljhotelandroidapp.customViews.CustomAlertDialog;
 import com.longjingtech.ljhotelandroidapp.sys.NetworkUtils;
 
 import org.apache.http.HttpResponse;
@@ -351,7 +352,7 @@ public class BaseNativeVideoPlayerActivity extends Activity
                                         httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);
                                         httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
 
-                                        HttpPost httpPost = new HttpPost("http://192.168.1.180:8888/hotel/insert_play_time.php");
+                                        HttpPost httpPost = new HttpPost("http://192.168.1.240:8888/hotel/insert_play_time.php");
 
                                         List<NameValuePair> params = new ArrayList<NameValuePair>();
 

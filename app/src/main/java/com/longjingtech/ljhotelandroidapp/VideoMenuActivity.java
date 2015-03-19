@@ -90,7 +90,7 @@ public class VideoMenuActivity extends ActionBarActivity {
             @Override
             public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
 
-                mWebView.loadUrl("http://192.168.1.180:8888/hotel/index_1.php?type=" + categoryName[i]);
+                mWebView.loadUrl("http://192.168.1.240:8888/hotel/index_1.php?type=" + categoryName[i]);
             }
 
             @Override

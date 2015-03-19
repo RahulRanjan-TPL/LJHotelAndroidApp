@@ -7,7 +7,7 @@
     <EditText
         android:id="@+id/traffic_check_edittext"
         android:hint="@string/traffic_check_hint_textview"
-        android:layout_marginTop="240dp"
+        android:layout_marginTop="260dp"
         android:layout_gravity="center"
         android:gravity="center"
         android:textSize="30sp"

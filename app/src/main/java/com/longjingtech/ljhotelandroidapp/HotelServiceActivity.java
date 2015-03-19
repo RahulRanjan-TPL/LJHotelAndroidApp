@@ -71,8 +71,8 @@ public class HotelServiceActivity extends ActionBarActivity {
                                     resultBalance = htmlResponse.substring(6,htmlResponse.length() - 3);
 
                                     AlertDialog.Builder builder = new AlertDialog.Builder(HotelServiceActivity.this);
-                                    builder.setTitle("查询结果")
-                                           .setMessage("卡号  " + userCardNum + "  的余额为  " + resultBalance + "  元")
+                                    builder.setTitle(R.string.traffic_check_title)
+                                           .setMessage("公交卡号  " + userCardNum + "  的余额为  " + resultBalance + "  元")
                                            .setPositiveButton(R.string.traffic_check_yes, new DialogInterface.OnClickListener() {
                                                @Override
                                                public void onClick(DialogInterface dialog, int which) {
