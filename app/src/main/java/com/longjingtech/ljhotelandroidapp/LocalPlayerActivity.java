@@ -16,7 +16,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.longjingtech.ljhotelandroidapp.adapter.AdapterTextview;
-import com.longjingtech.ljhotelandroidapp.sys.VideoFileNameFilter;
+import com.longjingtech.ljhotelandroidapp.sys.CustomFileNameFilter;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -46,10 +46,11 @@ public class LocalPlayerActivity extends ActionBarActivity {
         fileList = new ArrayList<String>();
         fileListPath = new ArrayList<String>();
 
+        /*
         try {
-            /*
-            * 在COS下，系统会在/mnt/udisk/下创建一个随便目录供U盘挂载
-            * */
+
+            //在COS下，系统会在/mnt/udisk/下创建一个随便目录供U盘挂载
+
             File file = new File("/mnt/udisk");
             if (file.length() == 0) {
                 Log.e(TAG,"No Device found.");
@@ -68,10 +69,10 @@ public class LocalPlayerActivity extends ActionBarActivity {
                 String availableSize = android.text.format.Formatter.formatFileSize(getApplicationContext(),availableBlocks * blockSize);
                 String totalSize = android.text.format.Formatter.formatFileSize(getApplicationContext(),totalBlocks * blockSize);
 
-                textView_deviceCapacity.setText(usedSize + "/" + totalSize);
+                textView_deviceCapacity.setText(usedSize + "  可用/共: " + totalSize);
 
                 //罗列支持打开的文件格式
-                VideoFileNameFilter videoFileNameFilter = new VideoFileNameFilter();
+                CustomFileNameFilter videoFileNameFilter = new CustomFileNameFilter();
                 videoFileNameFilter.addType(".mp4");
                 videoFileNameFilter.addType(".mkv");
                 videoFileNameFilter.addType(".avi");
@@ -93,12 +94,61 @@ public class LocalPlayerActivity extends ActionBarActivity {
         } catch (Exception e) {
             e.printStackTrace();
         }
+        */
+
+        //for BESTV
+        try {
+
+            File file = new File("/mnt/udisk");
+            if (file.length() == 0) {
+                Log.e(TAG,"No File found.");
+            }
+            else {
+
+                //计算U盘总容量、已使用容量、可用容量
+                StatFs statFs = new StatFs("/mnt/udisk");
+                long blockSize = statFs.getBlockSize();
+                long totalBlocks = statFs.getBlockCount();
+                long availableBlocks = statFs.getAvailableBlocks();
+
+                String usedSize = android.text.format.Formatter.formatFileSize(getApplicationContext(),(totalBlocks - availableBlocks) * blockSize);
+                String availableSize = android.text.format.Formatter.formatFileSize(getApplicationContext(),availableBlocks * blockSize);
+                String totalSize = android.text.format.Formatter.formatFileSize(getApplicationContext(),totalBlocks * blockSize);
+
+                textView_deviceCapacity.setText(usedSize + "  可用/共: " + totalSize);
+
+                //罗列支持打开的文件格式
+                CustomFileNameFilter customFileNameFilter = new CustomFileNameFilter();
+                customFileNameFilter.addType(".mp4");
+                customFileNameFilter.addType(".mkv");
+                customFileNameFilter.addType(".avi");
+                customFileNameFilter.addType(".mp3");
+                customFileNameFilter.addType(".doc");
+                customFileNameFilter.addType(".docx");
+                customFileNameFilter.addType(".ppt");
+                customFileNameFilter.addType(".pdf");
+                customFileNameFilter.addType(".xls");
+                customFileNameFilter.addType(".xlsx");
+
+                File[] files1 = file.listFiles(customFileNameFilter);
+                for (int i = 0;i < files1.length;i++) {
+                    fileList.add(files1[i].getName());
+                    fileListPath.add(files1[i].getPath());
+                }
+
+            }
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
         files = fileList.toArray(new String[1]);
         filesPath = fileListPath.toArray(new String[1]);
 
         adapterTextview = new AdapterTextview(this,files);
         listView.setAdapter(adapterTextview);
+        if (fileList.isEmpty() == false) {
+            listView.setSelector(R.drawable.main_icon_focus);
+        }
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -110,7 +160,7 @@ public class LocalPlayerActivity extends ActionBarActivity {
                     Intent intent = new Intent();
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                     intent.setAction(Intent.ACTION_VIEW);
-                    intent.setClassName("cn.wps.moffice","cn.wps.moffice.documentmanager.PreStartActivity");
+                    intent.setClassName("cn.wps.moffice_eng","cn.wps.moffice.main.local.home.PadHomeActivity");
 
                     Uri uri = Uri.fromFile(new File(filesPath[position]));
                     intent.setData(uri);
@@ -121,6 +171,10 @@ public class LocalPlayerActivity extends ActionBarActivity {
                     }
 
                 }else if (filesPath[position].endsWith("mp3")) {
+                    Intent intent = new Intent();
+                    intent.setClass(LocalPlayerActivity.this,Mp3PlayerActivity.class);
+                    intent.putExtra("audioPath",filesPath[position]);
+                    startActivity(intent);
 
                 }else if (filesPath[position].endsWith("pdf")) {
 
@@ -134,6 +188,7 @@ public class LocalPlayerActivity extends ActionBarActivity {
                 }
             }
         });
+
     }
 
 

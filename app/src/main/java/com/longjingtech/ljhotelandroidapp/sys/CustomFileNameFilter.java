@@ -9,14 +9,14 @@ import java.util.List;
 /**
  * Created by djstava on 15/2/27.
  */
-public class VideoFileNameFilter implements FilenameFilter {
+public class CustomFileNameFilter implements FilenameFilter {
     List<String> types;
 
-    public VideoFileNameFilter() {
+    public CustomFileNameFilter() {
         types = new ArrayList<String>();
     }
 
-    public VideoFileNameFilter(List<String> types) {
+    public CustomFileNameFilter(List<String> types) {
         super();
         this.types = types;
     }

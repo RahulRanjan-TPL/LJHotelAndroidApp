@@ -35,5 +35,8 @@
     <string name="traffic_check_start">开始查询</string>
     <string name="traffic_check_yes">确定</string>
     <string name="traffic_check_title">查询结果</string>
+    <string name="title_activity_mp3_player">Mp3PlayerActivity</string>
+
+    <string name="hello_world">Hello world!</string>
 
 </resources>
