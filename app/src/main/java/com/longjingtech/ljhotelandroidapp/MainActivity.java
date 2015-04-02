@@ -297,7 +297,9 @@ public class MainActivity extends ActionBarActivity {
 
                 if (weatherJson == null) {
                     Log.e(TAG,"36wu weather json error.");
-                    textView_welcome_weather_degree.setText(R.string.welcome_weather_none);
+                    Message message = new Message();
+                    message.obj = null;
+                    handler.sendMessage(message);
                     weatherInfoFlag = 1;
                 }else {
                     try {
@@ -324,19 +326,11 @@ public class MainActivity extends ActionBarActivity {
             super.handleMessage(message);
 
             JSONObject jsonObject = (JSONObject) message.obj;
-            String cityValue = null;
 
-            try {
-                cityValue = jsonObject.getString("city");
-            } catch (JSONException e) {
-                e.printStackTrace();
-            }
-
-            if (cityValue == null) {
-                Log.e(TAG,"=====djstava city is null");
+            if (jsonObject == null) {
                 textView_welcome_weather_degree.setText(R.string.welcome_weather_none);
-            } else {
-                Log.e(TAG,"====djstava handle else");
+            }
+            else {
                 try {
                     welcome_weather_degree = jsonObject.getString("minTemp") + "~" + jsonObject.getString("maxTemp");
                     welcome_weather = jsonObject.getString("weather");
@@ -347,6 +341,7 @@ public class MainActivity extends ActionBarActivity {
                     e.printStackTrace();
                 }
             }
+
         }
     };
 
