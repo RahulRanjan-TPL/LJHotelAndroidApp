@@ -241,7 +241,7 @@ public class MainmenuActivity extends ActionBarActivity {
             @Override
             public void run() {
 
-                String cityUrl = "http://api.36wu.com/Weather/GetWeather?district=" + CITYNAME;
+                String cityUrl = "http://api.36wu.com/Weather/GetWeather?district=" + CITYNAME + "&format=json";
 
                 WeatherInfo weatherInfo = new WeatherInfo();
                 String weatherJson = weatherInfo.getWeatherInfoByUrl(cityUrl);

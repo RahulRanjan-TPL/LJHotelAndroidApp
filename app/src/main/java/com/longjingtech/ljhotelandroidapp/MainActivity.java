@@ -288,7 +288,7 @@ public class MainActivity extends ActionBarActivity {
             public void run() {
 
                 Looper.prepare();
-                String cityUrl = "http://api.36wu.com/Weather/GetWeather?district=" + CITYNAME;
+                String cityUrl = "http://api.36wu.com/Weather/GetWeather?district=" + CITYNAME + "&format=json";
 
                 WeatherInfo weatherInfo = new WeatherInfo();
                 String weatherJson = weatherInfo.getWeatherInfoByUrl(cityUrl);
