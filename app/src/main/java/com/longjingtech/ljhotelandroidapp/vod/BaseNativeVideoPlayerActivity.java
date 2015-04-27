@@ -8,6 +8,7 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
+import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -121,7 +122,7 @@ public class BaseNativeVideoPlayerActivity extends Activity
             mPlayer.setOnCompletionListener(new MediaPlayer.OnCompletionListener() {
                 @Override
                 public void onCompletion(MediaPlayer mp) {
-                    Toast.makeText(BaseNativeVideoPlayerActivity.this,"影片播放完毕,谢谢欣赏!",Toast.LENGTH_SHORT).show();
+                    Toast.makeText(BaseNativeVideoPlayerActivity.this, "影片播放完毕,谢谢欣赏!", Toast.LENGTH_SHORT).show();
                     mPlayer.stop();
                     finish();
                 }
@@ -130,7 +131,22 @@ public class BaseNativeVideoPlayerActivity extends Activity
             mPlayer.setOnErrorListener(new MediaPlayer.OnErrorListener() {
                 @Override
                 public boolean onError(MediaPlayer mp, int what, int extra) {
-                    Toast.makeText(BaseNativeVideoPlayerActivity.this,"影片播放出现错误,请重新点播!",Toast.LENGTH_LONG).show();
+                    if (what == MediaPlayer.MEDIA_ERROR_TIMED_OUT) {
+                        Toast.makeText(BaseNativeVideoPlayerActivity.this,"Some operation takes too long to complete, usually more than 3-5 seconds.",Toast.LENGTH_LONG).show();
+                    } else if (what == MediaPlayer.MEDIA_ERROR_SERVER_DIED) {
+                        Toast.makeText(BaseNativeVideoPlayerActivity.this,"服务器没有响应,请重新点播!",Toast.LENGTH_LONG).show();
+                    } else if (what == MediaPlayer.MEDIA_ERROR_UNSUPPORTED) {
+                        Toast.makeText(BaseNativeVideoPlayerActivity.this,"Bitstream is conforming to the related coding standard or file spec, but the media framework does not support the feature.",Toast.LENGTH_LONG).show();
+                    } else if (what == MediaPlayer.MEDIA_ERROR_MALFORMED) {
+                        Toast.makeText(BaseNativeVideoPlayerActivity.this,"Bitstream is not conforming to the related coding standard or file spec.",Toast.LENGTH_LONG).show();
+                    } else if (what == MediaPlayer.MEDIA_ERROR_IO) {
+                        Toast.makeText(BaseNativeVideoPlayerActivity.this,"File or network related operation errors.",Toast.LENGTH_LONG).show();
+                    } else if (what == MediaPlayer.MEDIA_ERROR_NOT_VALID_FOR_PROGRESSIVE_PLAYBACK) {
+                        Toast.makeText(BaseNativeVideoPlayerActivity.this,"The video is streamed and its container is not valid for progressive playback",Toast.LENGTH_LONG).show();
+                    } else if (what == MediaPlayer.MEDIA_ERROR_UNKNOWN) {
+                        Toast.makeText(BaseNativeVideoPlayerActivity.this,"未知错误,请重新点播!",Toast.LENGTH_LONG).show();
+                    }
+
                     mPlayer.stop();
                     mPlayer.release();
                     mPlayer = null;
