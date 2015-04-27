@@ -1,6 +1,7 @@
 package com.longjingtech.ljhotelandroidapp;
 
 import android.content.Intent;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
@@ -68,12 +69,17 @@ public class VideoMenuActivity extends ActionBarActivity {
 
             @Override
             public boolean shouldOverrideKeyEvent(WebView webView,KeyEvent keyEvent) {
-                //让onKeyDown来处理KeyEvent.KEYCODE_STAR,此处对应菜单键
+                //让onKeyDown来处理KeyEvent.KEYCODE_STAR,此处对遥控器应菜单键
                 if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_STAR) {
                     return true;
                 } else {
                     return false;
                 }
+            }
+
+            @Override
+            public void onPageStarted(WebView webView1,String url,Bitmap bitmap) {
+                super.onPageStarted(webView1,url,bitmap);
             }
 
             @Override

@@ -176,13 +176,11 @@ public class VideoSlidingMenu extends RelativeLayout implements View.OnTouchList
 
     @Override
     public boolean onKeyDown(int keyCode,KeyEvent keyEvent) {
-        Log.e("=====SlidingLayout", "onKeyDown ======");
         return super.onKeyDown(keyCode,keyEvent);
     }
 
     @Override
     public boolean onTouch(View v, MotionEvent event) {
-        Log.e("====djstava onTouch","SlidingLayout");
         createVelocityTracker(event);
         if (leftLayout.getVisibility() != View.VISIBLE) {
             leftLayout.setVisibility(View.VISIBLE);
