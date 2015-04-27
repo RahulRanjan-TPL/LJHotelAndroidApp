@@ -3,123 +3,89 @@ package com.longjingtech.ljhotelandroidapp;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
-import android.util.DisplayMetrics;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.View.OnFocusChangeListener;
-import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 import android.widget.AdapterView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 
+import com.longjingtech.ljhotelandroidapp.customViews.VideoSlidingMenu;
 import com.longjingtech.ljhotelandroidapp.mainmenu.VideoMenuListViewItemAdapter;
 import com.longjingtech.ljhotelandroidapp.sys.NetworkUtils;
 
 public class VideoMenuActivity extends ActionBarActivity {
-    private WebView mWebView;
+    private WebView webView;
     private ListView listView;
     private static final String TAG = VideoMenuActivity.class.getSimpleName();
     private String[] categoryName;
-
-    DisplayMetrics displayMetrics = new DisplayMetrics();
-    private View.OnFocusChangeListener onFocusChangeListener;
+    private VideoSlidingMenu videoSlidingMenu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_video_menu);
 
-        getWindowManager().getDefaultDisplay().getMetrics(displayMetrics);
+        videoSlidingMenu = (VideoSlidingMenu)findViewById(R.id.videoSlidingMenu);
 
         Bundle bundle = getIntent().getExtras();
         categoryName = bundle.getString("movieCategory").split(",");
 
-        listView = (ListView) findViewById(R.id.movielist);
-        mWebView = (WebView) findViewById(R.id.webView);
+        listView = (ListView) findViewById(R.id.listView);
+        webView = (WebView) findViewById(R.id.webView);
 
-        ViewGroup.LayoutParams listparams = listView.getLayoutParams();
-        listparams.width = displayMetrics.widthPixels/9;
-
-        //listView.setPadding(64,100,0,0);
-        listView.setLayoutParams(listparams);
-        listView.setDivider(null);
-
-        //listView.setBackgroundColor(Color.argb(255,128,128,128));
+        //listView.setDivider(null);
 
         VideoMenuListViewItemAdapter videomenuListViewItemAdapter = new VideoMenuListViewItemAdapter(this,categoryName);
         listView.setAdapter(videomenuListViewItemAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-                switch (i)
-                {
-                    case 0:
-                        break;
-                    case 1:
-                        ViewGroup.LayoutParams params = listView.getLayoutParams();
-                        params.width = 0;
-                        listView.setLayoutParams(params);
-                        break;
-                    case 2:
-                        ViewGroup.LayoutParams params1 = listView.getLayoutParams();
-                        params1.width = displayMetrics.widthPixels/8;
-                        listView.setLayoutParams(params1);
-                        break;
-                }
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                webView.loadUrl("http://192.168.1.240:8888/hotel/index_1.php?type=" + categoryName[position]);
+                listView.requestFocus();
             }
         });
 
-        listView.setOnFocusChangeListener(new OnFocusChangeListener() {
-
-            @Override
-            public void onFocusChange(View arg0, boolean arg1) {
-
-            }
-        });
-
-        listView.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
-            @Override
-            public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
-                mWebView.loadUrl("http://192.168.1.240:8888/hotel/index_1.php?type=" + categoryName[i]);
-            }
-
-            @Override
-            public void onNothingSelected(AdapterView<?> adapterView) {
-
-            }
-        });
-
-        RelativeLayout.LayoutParams layoutparams = new RelativeLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        layoutparams.setMargins(0, 0, 0, 0);
-        mWebView.setLayoutParams(layoutparams);
-
-        WebSettings webSettings = mWebView.getSettings();
+        WebSettings webSettings = webView.getSettings();
         webSettings.setJavaScriptEnabled(true);
         webSettings.setUseWideViewPort(true);
         webSettings.setLoadWithOverviewMode(true);
-        mWebView.addJavascriptInterface(this,"player");
+        webView.addJavascriptInterface(this,"player");
 
-        mWebView.setWebViewClient(new WebViewClient(){
+        webView.setWebViewClient(new WebViewClient(){
             @Override
             public boolean shouldOverrideUrlLoading(WebView view, String url) {
                 view.loadUrl(url);
                 //return super.shouldOverrideUrlLoading(view, url);
                 return true;
             }
+
+            @Override
+            public boolean shouldOverrideKeyEvent(WebView webView,KeyEvent keyEvent) {
+                //让onKeyDown来处理KeyEvent.KEYCODE_STAR,此处对应菜单键
+                if (keyEvent.getKeyCode() == KeyEvent.KEYCODE_STAR) {
+                    return true;
+                } else {
+                    return false;
+                }
+            }
+
+            @Override
+            public void onPageFinished(WebView webView,String url) {
+                super.onPageFinished(webView,url);
+            }
         });
 
-        //mWebView.setFocusable(false);
-        listView.setFocusable(true);
+        webView.requestFocus();
+        webView.loadUrl("http://192.168.1.240:8888/hotel/index_1.php?type=all");
+
+        videoSlidingMenu.setScrollEvent(webView);
     }
 
 
@@ -145,62 +111,41 @@ public class VideoMenuActivity extends ActionBarActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    @Override
     public boolean onKeyDown(int keyCode, KeyEvent event) {
-        String str_i = String.valueOf(keyCode);
-        Log.e(TAG,str_i);
         switch (keyCode)
         {
+            case KeyEvent.KEYCODE_STAR:
+                if (!videoSlidingMenu.isLeftLayoutVisible()) {
+                    videoSlidingMenu.scrollToLeftLayout();
+                    listView.requestFocus();
+                } else if (videoSlidingMenu.isLeftLayoutVisible()) {
+                    videoSlidingMenu.scrollToRightLayout();
+                    webView.requestFocus();
+                }
+
+                return true;
+
+            case KeyEvent.KEYCODE_DPAD_RIGHT:
+                if (videoSlidingMenu.isLeftLayoutVisible()) {
+                    videoSlidingMenu.scrollToRightLayout();
+                    webView.requestFocus();
+                }
+
+                return true;
+
             case KeyEvent.KEYCODE_BACK:
-                //if (mWebView .canGoBack()) {
-                //    mWebView.goBack();
-                //    return true;
-                //}
-                String match = new String("index_1.php");
-                String url = mWebView.getUrl();
-                Log.e(TAG,url);
-                if(url.indexOf(match) == -1)
-                {
-                    mWebView.goBack();
-                    return true;
+
+                if (webView.canGoBack()) {
+                    webView.goBack();
+                } else {
+                    finish();
                 }
-                if (listView.getWidth() == 0) {
-                    ViewGroup.LayoutParams params = listView.getLayoutParams();
-                    params.width = displayMetrics.widthPixels/8;
-                    listView.setLayoutParams(params);
-                    mWebView.setFocusable(false);
-                    mWebView.setFocusableInTouchMode(false);
-                    listView.setFocusable(true);
-                    listView.setFocusableInTouchMode(true);
-                    return true;
-                }
-                break;
+
+                return true;
         }
 
         return super.onKeyDown(keyCode, event);
-    }
-
-    public boolean dispatchKeyEvent(KeyEvent event){
-        // TODO Auto-generated method stub
-        if(event.getAction()==KeyEvent.ACTION_DOWN){
-            switch (event.getKeyCode()){
-                case KeyEvent.KEYCODE_DPAD_LEFT:
-                    break;
-                case KeyEvent.KEYCODE_DPAD_RIGHT:
-                    break;
-                case KeyEvent.KEYCODE_DPAD_CENTER:
-                    ViewGroup.LayoutParams params = listView.getLayoutParams();
-                    if(params.width != 0) {
-                        params.width = 0;
-                        listView.setLayoutParams(params);
-                        listView.setFocusable(false);
-                        listView.setFocusableInTouchMode(false);
-                        mWebView.setFocusable(true);
-                        mWebView.setFocusableInTouchMode(true);
-                        return true;
-                    }
-            }
-        }
-        return super.dispatchKeyEvent(event);
     }
 
     @JavascriptInterface
