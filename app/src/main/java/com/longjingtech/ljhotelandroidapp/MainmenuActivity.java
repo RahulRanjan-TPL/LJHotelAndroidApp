@@ -48,6 +48,7 @@ public class MainmenuActivity extends ActionBarActivity {
     private NetworkBroadcastReceiver networkBroadcastReceiver;
     private USBBroadcastReceiver usbBroadcastReceiver;
     private String categoryName;
+    private String webServerIp;
 
     private Calendar calendar;
     private String date;
@@ -108,6 +109,9 @@ public class MainmenuActivity extends ActionBarActivity {
         customLinkViews_usb = (CustomLinkViews)findViewById(R.id.mainmenu_link_usb);
         customLinkViews_usb.setImageResource(R.drawable.net_inactive);
         customLinkViews_usb.setTextViewText("USB");
+
+        SharedPreferences sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
+        webServerIp = sharedPreferences.getString("webServer","192.168.1.240");
 
         listView = (ListView)findViewById(R.id.mainmenu_listview);
 
@@ -173,14 +177,14 @@ public class MainmenuActivity extends ActionBarActivity {
                 httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);
                 httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
 
-                HttpPost httpPost = new HttpPost("http://192.168.1.240:8888/hotel/post_movietype.php?language=" + language);
+                HttpPost httpPost = new HttpPost("http://" + webServerIp + ":8888/hotel/post_movietype.php?language=" + language);
 
                 try {
                     HttpResponse httpResponse = httpClient.execute(httpPost);
 
                     if (httpResponse.getStatusLine().getStatusCode() == 200) {
-                        Log.e(TAG,"Get movie category success.");
                         categoryName = EntityUtils.toString(httpResponse.getEntity(), HTTP.UTF_8);
+                        Log.e(TAG,"Get movie category: " + categoryName);
                     }
                     else {
                         Log.e(TAG,"Error response code.");

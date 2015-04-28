@@ -40,6 +40,10 @@ public class VideoMenuActivity extends ActionBarActivity {
         Bundle bundle = getIntent().getExtras();
         categoryName = bundle.getString("movieCategory").split(",");
 
+        if ((categoryName == null) || (categoryName != null && categoryName.length == 0)) {
+            Log.e(TAG,"== categoryName is empty.");
+        }
+
         listView = (ListView) findViewById(R.id.listView);
         webView = (WebView) findViewById(R.id.webView);
 
@@ -54,7 +58,7 @@ public class VideoMenuActivity extends ActionBarActivity {
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                webView.loadUrl(webServerIP + ":8888/hotel/index_1.php?type=" + categoryName[position]);
+                webView.loadUrl("http://" + webServerIP + ":8888/hotel/index_1.php?type=" + categoryName[position]);
                 listView.requestFocus();
             }
         });
@@ -95,7 +99,7 @@ public class VideoMenuActivity extends ActionBarActivity {
         });
 
         webView.requestFocus();
-        webView.loadUrl(webServerIP + ":8888/hotel/index_1.php?type=all");
+        webView.loadUrl("http://" + webServerIP + ":8888/hotel/index_1.php?type=all");
 
         videoSlidingMenu.setScrollEvent(webView);
     }
