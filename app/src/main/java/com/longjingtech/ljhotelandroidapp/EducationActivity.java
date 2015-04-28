@@ -7,13 +7,12 @@ import android.util.Log;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
-import android.view.ViewGroup;
 import android.webkit.JavascriptInterface;
 import android.webkit.WebSettings;
 import android.webkit.WebView;
 import android.webkit.WebViewClient;
 
-import com.longjingtech.ljhotelandroidapp.sys.NetworkUtils;
+import com.longjingtech.ljhotelandroidapp.tools.NetworkUtils;
 
 
 public class EducationActivity extends ActionBarActivity {

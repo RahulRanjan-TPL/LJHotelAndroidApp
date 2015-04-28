@@ -145,7 +145,7 @@ public class MainmenuActivity extends ActionBarActivity {
                         break;
 
                     case 4:
-                        Toast.makeText(MainmenuActivity.this,"正在建设中...",Toast.LENGTH_SHORT).show();
+                        startActivity(new Intent(MainmenuActivity.this,SystemConfigActivity.class));
                         break;
 
                     default:

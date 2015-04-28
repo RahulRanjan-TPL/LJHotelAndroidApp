@@ -8,7 +8,6 @@ import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Bundle;
-import android.provider.MediaStore;
 import android.util.Log;
 import android.view.KeyEvent;
 import android.view.MotionEvent;
@@ -20,7 +19,7 @@ import android.widget.Toast;
 
 import com.longjingtech.ljhotelandroidapp.R;
 import com.longjingtech.ljhotelandroidapp.customViews.CustomAlertDialog;
-import com.longjingtech.ljhotelandroidapp.sys.NetworkUtils;
+import com.longjingtech.ljhotelandroidapp.tools.NetworkUtils;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.NameValuePair;

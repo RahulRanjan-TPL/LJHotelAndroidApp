@@ -23,7 +23,6 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews;
-import com.longjingtech.ljhotelandroidapp.sys.NetworkUtils;
 import com.longjingtech.ljhotelandroidapp.weather.WeatherInfo;
 import com.longjingtech.ljhotelandroidapp.welcome.ListViewItemAdapter;
 
@@ -388,7 +387,7 @@ public class MainActivity extends ActionBarActivity {
     public void saveLocale(String lang)
     {
         String langPref = "Language";
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("config", Activity.MODE_PRIVATE);
         SharedPreferences.Editor editor = prefs.edit();
         editor.putString(langPref, lang);
         editor.commit();

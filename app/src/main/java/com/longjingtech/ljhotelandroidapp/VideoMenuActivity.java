@@ -1,6 +1,8 @@
 package com.longjingtech.ljhotelandroidapp;
 
+import android.app.Activity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 import android.support.v7.app.ActionBarActivity;
@@ -18,7 +20,7 @@ import android.widget.ListView;
 
 import com.longjingtech.ljhotelandroidapp.customViews.VideoSlidingMenu;
 import com.longjingtech.ljhotelandroidapp.mainmenu.VideoMenuListViewItemAdapter;
-import com.longjingtech.ljhotelandroidapp.sys.NetworkUtils;
+import com.longjingtech.ljhotelandroidapp.tools.NetworkUtils;
 
 public class VideoMenuActivity extends ActionBarActivity {
     private WebView webView;
@@ -26,6 +28,7 @@ public class VideoMenuActivity extends ActionBarActivity {
     private static final String TAG = VideoMenuActivity.class.getSimpleName();
     private String[] categoryName;
     private VideoSlidingMenu videoSlidingMenu;
+    private String webServerIP;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,13 +45,16 @@ public class VideoMenuActivity extends ActionBarActivity {
 
         //listView.setDivider(null);
 
+        SharedPreferences sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
+        webServerIP = sharedPreferences.getString("webServer","192.168.1.240");
+
         VideoMenuListViewItemAdapter videomenuListViewItemAdapter = new VideoMenuListViewItemAdapter(this,categoryName);
         listView.setAdapter(videomenuListViewItemAdapter);
 
         listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                webView.loadUrl("http://192.168.1.240:8888/hotel/index_1.php?type=" + categoryName[position]);
+                webView.loadUrl(webServerIP + ":8888/hotel/index_1.php?type=" + categoryName[position]);
                 listView.requestFocus();
             }
         });
@@ -89,7 +95,7 @@ public class VideoMenuActivity extends ActionBarActivity {
         });
 
         webView.requestFocus();
-        webView.loadUrl("http://192.168.1.240:8888/hotel/index_1.php?type=all");
+        webView.loadUrl(webServerIP + ":8888/hotel/index_1.php?type=all");
 
         videoSlidingMenu.setScrollEvent(webView);
     }

@@ -1,0 +1,16 @@
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools" android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_marginTop="200dp"
+    tools:context="com.longjingtech.ljhotelandroidapp.SystemConfigActivity">
+
+    <ListView
+        android:id="@+id/listView"
+        android:layout_marginTop="200dp"
+        android:layout_width="match_parent"
+        android:layout_gravity="center_horizontal"
+        android:layout_height="match_parent">
+
+    </ListView>
+
+</LinearLayout>

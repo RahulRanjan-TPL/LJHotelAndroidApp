@@ -38,5 +38,8 @@
     <string name="title_activity_mp3_player">Mp3PlayerActivity</string>
 
     <string name="hello_world">Hello world!</string>
+    <string name="title_activity_system_config">SystemConfigActivity</string>
+    <string name="title_activity_change_web_server">ChangeWebServerActivity</string>
+    <string name="title_textview_change_web_server">设置页面服务器</string>
 
 </resources>

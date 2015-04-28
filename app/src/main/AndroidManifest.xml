@@ -72,6 +72,14 @@
             android:name=".Mp3PlayerActivity"
             android:label="@string/title_activity_mp3_player" >
         </activity>
+        <activity
+            android:name=".SystemConfigActivity"
+            android:label="@string/title_activity_system_config" >
+        </activity>
+        <activity
+            android:name=".sysConfig.ChangeWebServerActivity"
+            android:label="@string/title_activity_change_web_server" >
+        </activity>
     </application>
 
 </manifest>

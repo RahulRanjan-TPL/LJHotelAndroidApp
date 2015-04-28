@@ -3,7 +3,6 @@ package com.longjingtech.ljhotelandroidapp;
 import android.content.ActivityNotFoundException;
 import android.content.Intent;
 import android.net.Uri;
-import android.os.Environment;
 import android.os.StatFs;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
@@ -16,7 +15,7 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.longjingtech.ljhotelandroidapp.adapter.AdapterTextview;
-import com.longjingtech.ljhotelandroidapp.sys.CustomFileNameFilter;
+import com.longjingtech.ljhotelandroidapp.tools.CustomFileNameFilter;
 
 import java.io.File;
 import java.util.ArrayList;
