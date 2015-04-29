@@ -184,7 +184,7 @@ public class MainmenuActivity extends ActionBarActivity {
 
                     if (httpResponse.getStatusLine().getStatusCode() == 200) {
                         categoryName = EntityUtils.toString(httpResponse.getEntity(), HTTP.UTF_8);
-                        Log.e(TAG,"Get movie category: " + categoryName);
+                        Log.e(TAG,"==== Get movie category: " + categoryName);
                     }
                     else {
                         Log.e(TAG,"Error response code.");

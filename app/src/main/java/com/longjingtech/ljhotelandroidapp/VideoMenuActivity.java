@@ -38,9 +38,13 @@ public class VideoMenuActivity extends ActionBarActivity {
         videoSlidingMenu = (VideoSlidingMenu)findViewById(R.id.videoSlidingMenu);
 
         Bundle bundle = getIntent().getExtras();
-        categoryName = bundle.getString("movieCategory").split(",");
+        try {
+            categoryName = bundle.getString("movieCategory").split(",");
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
 
-        if ((categoryName == null) || (categoryName != null && categoryName.length == 0)) {
+        if (categoryName == null || categoryName.length == 0) {
             Log.e(TAG,"== categoryName is empty.");
         }
 
