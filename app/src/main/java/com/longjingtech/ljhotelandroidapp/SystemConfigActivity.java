@@ -7,38 +7,62 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.GridView;
 import android.widget.ListView;
+import android.widget.SimpleAdapter;
 
 import com.longjingtech.ljhotelandroidapp.mainmenu.VideoMenuListViewItemAdapter;
 import com.longjingtech.ljhotelandroidapp.sysConfig.ChangeWebServerActivity;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Objects;
+
 
 public class SystemConfigActivity extends ActionBarActivity {
     private static final String TAG = SystemConfigActivity.class.getSimpleName();
-    private ListView listView;
-    private String[] configNames = {"网页地址"};
+    private GridView gridView;
+    private String[] configNames = {"设置网页地址","设置点播地址","检查软件更新"};
+    private int[] imageRes = {R.drawable.sysconfig,R.drawable.sysconfig,R.drawable.sysconfig};
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_system_config);
 
-        listView = (ListView)findViewById(R.id.listView);
+        gridView = (GridView)findViewById(R.id.gridView);
 
-        VideoMenuListViewItemAdapter videoMenuListViewItemAdapter = new VideoMenuListViewItemAdapter(this,configNames);
-        listView.setAdapter(videoMenuListViewItemAdapter);
+        List<HashMap<String,Object>> data = new ArrayList<HashMap<String, Object>>();
+        int length = configNames.length;
+        for (int i = 0;i < length; i++) {
+            HashMap<String,Object> map = new HashMap<String, Object>();
+            map.put("ItemImageView",imageRes[i]);
+            map.put("ItemTextView",configNames[i]);
+            data.add(map);
+        }
 
-        listView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        SimpleAdapter simpleAdapter = new SimpleAdapter(SystemConfigActivity.this,data,R.layout.system_config_item,new String[]{"ItemImageView","ItemTextView"},new int[]{R.id.item_imageView,R.id.item_textView});
+        gridView.setAdapter(simpleAdapter);
+        gridView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                if (position == 0) {
-                    startActivity(new Intent(SystemConfigActivity.this, ChangeWebServerActivity.class));
-                } else if (position == 1) {
+                switch (position) {
+                    case 0:
+                        startActivity(new Intent(SystemConfigActivity.this,ChangeWebServerActivity.class));
+                        break;
 
+                    case 1:
+                        break;
+
+                    case 2:
+                        break;
+
+                    default:
+                        break;
                 }
             }
         });
-
     }
 
 
