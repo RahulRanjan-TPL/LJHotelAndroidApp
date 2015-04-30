@@ -1,6 +1,7 @@
 package com.longjingtech.ljhotelandroidapp;
 
 import android.app.Activity;
+import android.app.ProgressDialog;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Bitmap;
@@ -29,6 +30,7 @@ public class VideoMenuActivity extends ActionBarActivity {
     private String[] categoryName;
     private VideoSlidingMenu videoSlidingMenu;
     private String webServerIP;
+    private ProgressDialog progressDialog;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -50,6 +52,8 @@ public class VideoMenuActivity extends ActionBarActivity {
 
         listView = (ListView) findViewById(R.id.listView);
         webView = (WebView) findViewById(R.id.webView);
+
+        progressDialog = ProgressDialog.show(VideoMenuActivity.this,"","正在加载...");
 
         //listView.setDivider(null);
 
@@ -98,6 +102,9 @@ public class VideoMenuActivity extends ActionBarActivity {
 
             @Override
             public void onPageFinished(WebView webView,String url) {
+                if (progressDialog.isShowing()) {
+                    progressDialog.dismiss();
+                }
                 super.onPageFinished(webView,url);
             }
         });

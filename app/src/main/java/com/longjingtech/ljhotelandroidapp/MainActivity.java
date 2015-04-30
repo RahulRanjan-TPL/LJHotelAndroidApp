@@ -2,8 +2,10 @@ package com.longjingtech.ljhotelandroidapp;
 
 import android.annotation.SuppressLint;
 import android.app.Activity;
+import android.app.AlertDialog;
 import android.content.BroadcastReceiver;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
@@ -15,6 +17,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.support.v7.app.ActionBarActivity;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -367,7 +370,7 @@ public class MainActivity extends ActionBarActivity {
     public void loadLocale()
     {
         String langPref = "Language";
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("config", Activity.MODE_PRIVATE);
         String language = prefs.getString(langPref, "");
         changeLang(language);
     }
@@ -496,5 +499,27 @@ public class MainActivity extends ActionBarActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    @Override
+    public boolean onKeyDown(int keyCode,KeyEvent keyEvent) {
+        if (keyCode == KeyEvent.KEYCODE_BACK) {
+            new AlertDialog.Builder(MainActivity.this).setMessage("是否退出应用?")
+                                                      .setPositiveButton("确定",new DialogInterface.OnClickListener() {
+                                                          @Override
+                                                          public void onClick(DialogInterface dialog, int which) {
+                                                              dialog.dismiss();
+                                                              finish();
+                                                          }
+                                                      })
+                                                      .setNegativeButton("取消",new DialogInterface.OnClickListener() {
+                                                          @Override
+                                                          public void onClick(DialogInterface dialog, int which) {
+                                                              dialog.dismiss();
+                                                          }
+                                                      }).show();
+        }
+
+        return super.onKeyDown(keyCode,keyEvent);
     }
 }
