@@ -5,7 +5,7 @@ android {
     buildToolsVersion "21.1.1"
 
     defaultConfig {
-        applicationId "com.longjingtech.ljhotelandroidapp"
+        applicationId "com.macernow.ljhotelandroidapp"
         minSdkVersion 14
         targetSdkVersion 21
         versionCode 1
