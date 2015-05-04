@@ -1,10 +1,12 @@
 package com.longjingtech.ljhotelandroidapp;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.DownloadManager;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
 import android.net.Uri;
@@ -47,8 +49,8 @@ public class SystemConfigActivity extends ActionBarActivity {
     private final int DOWNLOAD_ERROR = 4;
 
     private GridView gridView;
-    private String[] configNames = {"设置网页地址","设置点播地址","检查软件更新"};
-    private int[] imageRes = {R.drawable.sysconfig,R.drawable.sysconfig,R.drawable.sysconfig};
+    private String[] configNames = {"设置网页地址","设置点播地址","检查软件更新","恢复出厂设置"};
+    private int[] imageRes = {R.drawable.sysconfig,R.drawable.sysconfig,R.drawable.sysconfig,R.drawable.sysconfig};
 
     private String localVersion;
     private UpgradeInfo upgradeInfo;
@@ -94,6 +96,25 @@ public class SystemConfigActivity extends ActionBarActivity {
                         }
 
                         break;
+
+                    case 3: //恢复出厂设置
+                        new AlertDialog.Builder(SystemConfigActivity.this).setMessage("是否恢复出厂设置?")
+                                .setPositiveButton("确定",new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                        SharedPreferences prefs = getSharedPreferences("config", Activity.MODE_PRIVATE);
+                                        SharedPreferences.Editor editor = prefs.edit();
+                                        editor.clear().commit();
+                                    }
+                                })
+                                .setNegativeButton("取消",new DialogInterface.OnClickListener() {
+                                    @Override
+                                    public void onClick(DialogInterface dialog, int which) {
+                                        dialog.dismiss();
+                                    }
+                                }).show();
+
 
                     default:
                         break;

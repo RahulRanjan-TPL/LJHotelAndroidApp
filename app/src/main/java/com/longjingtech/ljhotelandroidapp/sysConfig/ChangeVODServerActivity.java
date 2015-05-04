@@ -53,6 +53,7 @@ public class ChangeVODServerActivity extends ActionBarActivity {
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("vodServer", vodServerAddr);
                     editor.commit();
+                    finish();
                 }
             }
         });

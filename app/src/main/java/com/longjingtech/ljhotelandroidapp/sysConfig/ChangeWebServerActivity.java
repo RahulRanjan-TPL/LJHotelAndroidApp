@@ -53,6 +53,7 @@ public class ChangeWebServerActivity extends ActionBarActivity {
                     SharedPreferences.Editor editor = prefs.edit();
                     editor.putString("webServer", webServerAddr);
                     editor.commit();
+                    finish();
                 }
             }
         });
