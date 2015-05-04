@@ -23,6 +23,7 @@ import android.widget.SimpleAdapter;
 import android.widget.Toast;
 
 import com.longjingtech.ljhotelandroidapp.mainmenu.VideoMenuListViewItemAdapter;
+import com.longjingtech.ljhotelandroidapp.sysConfig.ChangeVODServerActivity;
 import com.longjingtech.ljhotelandroidapp.sysConfig.ChangeWebServerActivity;
 import com.longjingtech.ljhotelandroidapp.upgrade.UpgradeInfo;
 import com.longjingtech.ljhotelandroidapp.upgrade.UpgradeInfoParser;
@@ -79,6 +80,7 @@ public class SystemConfigActivity extends ActionBarActivity {
                         break;
 
                     case 1: //更改点播服务器的地址
+                        startActivity(new Intent(SystemConfigActivity.this, ChangeVODServerActivity.class));
                         break;
 
                     case 2: //检查软件更新

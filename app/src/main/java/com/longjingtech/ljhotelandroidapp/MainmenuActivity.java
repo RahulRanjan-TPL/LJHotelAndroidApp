@@ -112,6 +112,7 @@ public class MainmenuActivity extends ActionBarActivity {
 
         SharedPreferences sharedPreferences = getSharedPreferences("config", Activity.MODE_PRIVATE);
         webServerIp = sharedPreferences.getString("webServer","192.168.1.240");
+        Log.e(TAG,"==== webServer = " + webServerIp);
 
         listView = (ListView)findViewById(R.id.mainmenu_listview);
 
