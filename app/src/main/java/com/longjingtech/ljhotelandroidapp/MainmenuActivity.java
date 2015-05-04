@@ -53,6 +53,8 @@ public class MainmenuActivity extends ActionBarActivity {
     private Calendar calendar;
     private String date;
 
+    private String categoryUrl;
+
     private static final String CITYNAME = "上海";
 
     @Override
@@ -114,6 +116,9 @@ public class MainmenuActivity extends ActionBarActivity {
         webServerIp = sharedPreferences.getString("webServer","192.168.1.240");
         Log.e(TAG,"==== webServer = " + webServerIp);
 
+        categoryUrl = "http://" + webServerIp + ":8888/hotel/post_movietype.php?language=" + getLocalLanguage();
+        Log.e(TAG," === categoryUrl is:" + categoryUrl);
+
         listView = (ListView)findViewById(R.id.mainmenu_listview);
 
         MainmenuListViewItemAdapter mainmenuListViewItemAdapter = new MainmenuListViewItemAdapter(this,mIcons,mTexts);
@@ -172,13 +177,12 @@ public class MainmenuActivity extends ActionBarActivity {
                 String language;
 
                 Looper.prepare();
-                language = getLocalLanguage();
 
                 HttpClient httpClient = new DefaultHttpClient();
                 httpClient.getParams().setParameter(CoreConnectionPNames.CONNECTION_TIMEOUT,5000);
                 httpClient.getParams().setParameter(CoreConnectionPNames.SO_TIMEOUT,5000);
 
-                HttpPost httpPost = new HttpPost("http://" + webServerIp + ":8888/hotel/post_movietype.php?language=" + language);
+                HttpPost httpPost = new HttpPost(categoryUrl);
 
                 try {
                     HttpResponse httpResponse = httpClient.execute(httpPost);
@@ -296,8 +300,11 @@ public class MainmenuActivity extends ActionBarActivity {
     public String getLocalLanguage() {
 
         String langPref = "Language";
-        SharedPreferences prefs = getSharedPreferences("CommonPrefs", Activity.MODE_PRIVATE);
+        SharedPreferences prefs = getSharedPreferences("config", Activity.MODE_PRIVATE);
         String language = prefs.getString(langPref, "");
+        if (language == null) {
+            language = "zh";
+        }
 
         return language;
     }
