@@ -42,4 +42,6 @@
     <string name="title_activity_change_web_server">ChangeWebServerActivity</string>
     <string name="title_textview_change_web_server">设置页面服务器</string>
 
+    <string name="upgrade_url_server">http://192.168.1.200/version.xml</string>
+
 </resources>

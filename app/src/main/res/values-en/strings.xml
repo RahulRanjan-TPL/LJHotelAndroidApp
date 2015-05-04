@@ -33,4 +33,6 @@
     <string name="title_local_player_file_list">File List</string>
     <string name="title_local_player_device">Local Device</string>
 
+    <string name="upgrade_url_server">http://192.168.1.200/version.xml</string>
+
 </resources>
