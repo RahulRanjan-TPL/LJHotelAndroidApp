@@ -3,7 +3,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="horizontal"
-    tools:context="com.longjingtech.ljhotelandroidapp.MainActivity">
+    tools:context="com.macernow.ljhotelandroidapp.MainActivity">
 
     <ListView
         android:id="@+id/mainmenu_listview"
@@ -96,32 +96,32 @@
             android:layout_width="match_parent"
             android:layout_height="0dp">
 
-            <com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews
+            <com.macernow.ljhotelandroidapp.customViews.CustomLinkViews
                 android:id="@+id/mainmenu_link_ethernet"
                 android:layout_weight="1"
                 android:layout_gravity="bottom"
                 android:gravity="bottom|center_horizontal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
-            </com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews>
+            </com.macernow.ljhotelandroidapp.customViews.CustomLinkViews>
 
-            <com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews
+            <com.macernow.ljhotelandroidapp.customViews.CustomLinkViews
                 android:id="@+id/mainmenu_link_wifi"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="bottom|center_horizontal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
-            </com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews>
+            </com.macernow.ljhotelandroidapp.customViews.CustomLinkViews>
 
-            <com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews
+            <com.macernow.ljhotelandroidapp.customViews.CustomLinkViews
                 android:id="@+id/mainmenu_link_usb"
                 android:layout_weight="1"
                 android:layout_gravity="center"
                 android:gravity="bottom|center_horizontal"
                 android:layout_width="0dp"
                 android:layout_height="match_parent">
-            </com.longjingtech.ljhotelandroidapp.customViews.CustomLinkViews>
+            </com.macernow.ljhotelandroidapp.customViews.CustomLinkViews>
         </LinearLayout>
 
     </LinearLayout>

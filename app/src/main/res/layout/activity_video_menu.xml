@@ -1,4 +1,4 @@
-<com.longjingtech.ljhotelandroidapp.customViews.VideoSlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
+<com.macernow.ljhotelandroidapp.customViews.VideoSlidingMenu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/videoSlidingMenu"
     android:layout_width="match_parent"
@@ -36,4 +36,4 @@
         </WebView>
     </LinearLayout>
 
-</com.longjingtech.ljhotelandroidapp.customViews.VideoSlidingMenu>
+</com.macernow.ljhotelandroidapp.customViews.VideoSlidingMenu>
